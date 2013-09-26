@@ -17,17 +17,17 @@ public class TestConn {
 			e.printStackTrace();
 		}
 		String username, password;
-		username = "root";
-		password = "root";
+		username = args[0];
+		password = args[1];
 		Connection conn = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/test", username, password);
+				"jdbc:mysql://localhost:3306/projone", username, password);
 		System.out.println("connected!");
 		Statement stmt = conn.createStatement();
 		String query = "select count(*) from mesowest_csv";
 		long currtime = System.currentTimeMillis();
 		ResultSet result = stmt.executeQuery(query);
 		System.out.println(result);
-		System.out.println("Time: "+(System.currentTimeMillis()-currtime)/1000+" seconds.");
+		System.out.println("Time: "+(System.currentTimeMillis()-currtime)+" milliseconds.");
 		int i = 10;
 		while(result.next() && i-->0){
 			String primaryid = result.getString(1);
